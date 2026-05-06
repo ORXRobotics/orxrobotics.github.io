@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beeline | Field Control Without the Sting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --brand-orange: #CC5500;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+        }
+        .text-brand { color: var(--brand-orange); }
+        .bg-brand { background-color: var(--brand-orange); }
+        .border-brand { border-color: var(--brand-orange); }
+        .hover-brand:hover { background-color: #a34400; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at center, #cc550020 0%, #0f0f0f 70%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="border-b border-white/10 py-4 px-6 flex justify-between items-center sticky top-0 bg-[#0f0f0f]/90 backdrop-blur-md z-50">
+        <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+            <span class="text-brand">🐝 BEELINE</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+            <a href="#features" class="hover:text-brand transition">Features</a>
+            <a href="#compatibility" class="hover:text-brand transition">Compatibility</a>
+            <a href="#hardware" class="hover:text-brand transition">Hardware</a>
+        </div>
+        <a href="YOUR_GOOGLE_FORM_URL" class="bg-brand px-5 py-2 rounded-sm text-sm font-bold hover-brand transition">BETA ACCESS</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-24 pb-32 px-6 hero-gradient overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+                FIELD CONTROL <br><span class="text-brand">WITHOUT THE STING.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                The high-performance, cross-platform software suite for FRC, FTC, and ORX. Built for speed, designed for reliability.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="YOUR_GOOGLE_FORM_URL" class="bg-brand text-white px-8 py-4 rounded-md font-bold text-lg hover-brand transition">JOIN THE HIVE</a>
+                <a href="#" class="border border-white/20 px-8 py-4 rounded-md font-bold text-lg hover:bg-white/5 transition">VIEW DOCUMENTATION</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Compatibility Table -->
+    <section id="compatibility" class="py-20 px-6 bg-[#141414]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">ONE SYSTEM. <span class="text-brand">THREE PLATFORMS.</span></h2>
+            <div class="overflow-x-auto rounded-lg border border-white/10">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-white/5 text-brand uppercase text-xs tracking-widest">
+                        <tr>
+                            <th class="p-4 border-b border-white/10">Platform</th>
+                            <th class="p-4 border-b border-white/10">Support</th>
+                            <th class="p-4 border-b border-white/10">Hardware</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr>
+                            <td class="p-4 font-bold">FRC</td>
+                            <td class="p-4 text-green-500 text-sm">● Full Native</td>
+                            <td class="p-4 text-gray-400 text-sm">All Driver Stations</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">FTC</td>
+                            <td class="p-4 text-green-500 text-sm">● Full Native</td>
+                            <td class="p-4 text-gray-400 text-sm">REV Driver Stations</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">ORX</td>
+                            <td class="p-4 text-brand text-sm">● Definitive</td>
+                            <td class="p-4 text-gray-400 text-sm">Universal Support</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-[#1a1a1a] p-8 border-t-4 border-brand rounded-b-lg">
+                <div class="text-brand text-3xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold mb-2">Zero-Latency</h3>
+                <p class="text-gray-400 text-sm">Websocket-driven communication for instant robot response and scoring.</p>
+            </div>
+            <div class="bg-[#1a1a1a] p-8 border-t-4 border-brand rounded-b-lg">
+                <div class="text-brand text-3xl mb-4">🌑</div>
+                <h3 class="text-xl font-bold mb-2">Dark-Mode First</h3>
+                <p class="text-gray-400 text-sm">Built for high-glare environments. Essential visibility for the competition floor.</p>
+            </div>
+            <div class="bg-[#1a1a1a] p-8 border-t-4 border-brand rounded-b-lg">
+                <div class="text-brand text-3xl mb-4">📡</div>
+                <h3 class="text-xl font-bold mb-2">Local-First</h3>
+                <p class="text-gray-400 text-sm">Fully functional without internet. Run your match on a secure dark network.</p>
+            </div>
+            <div class="bg-[#1a1a1a] p-8 border-t-4 border-brand rounded-b-lg">
+                <div class="text-brand text-3xl mb-4">📋</div>
+                <h3 class="text-xl font-bold mb-2">Match Logs</h3>
+                <p class="text-gray-400 text-sm">Automated logging for every connection to settle disputes and debug fast.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware / Flight Kit -->
+    <section id="hardware" class="py-20 px-6 bg-brand text-white text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-black mb-6 uppercase">The Flight Kit</h2>
+            <p class="text-lg mb-8 opacity-90">
+                Beeline is a software suite, but our <strong>Loaner Kits</strong> provide the hardware backbone. 
+                Pre-configured i5 Mini-PCs, enterprise switches, and cabling—ready to deploy on boot.
+            </p>
+            <div class="inline-block bg-black/20 backdrop-blur-sm p-6 rounded-lg text-left border border-white/20">
+                <ul class="space-y-2 font-mono text-sm uppercase tracking-tight">
+                    <li>> i5-POWERED CORE</li>
+                    <li>> GIGABIT SWITCHING</li>
+                    <li>> WEBSOCKET TEAM SIGNS (OPEN-SOURCE)</li>
+                    <li>> AUTOMATED MATCH SOUNDS</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm">
+        <div class="mb-6">
+            <span class="text-brand font-bold tracking-tighter">BEELINE FIELD CONTROL</span>
+        </div>
+        <p>&copy; 2026 ORX Robotics.</p>
+    </footer>
+
+</body>
+</html>
