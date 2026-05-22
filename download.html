@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloading mini_fms.exe</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .download-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .manual-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .manual-link:hover {
+            text-decoration: underline;
+        }
+        .counter-box {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="download-container">
+    <h1>Thank you for downloading!</h1>
+    <p>Your download for <strong>mini_fms.exe</strong> should start automatically in a moment.</p>
+    
+    <!-- Fallback link in case automatic download is blocked -->
+    <a href="/downloads/mini_fms.exe" id="downloadLink" class="manual-link" download>
+        Click here if the download didn't start
+    </a>
+
+    <!-- Your Tracker Widget -->
+    <div class="counter-box">
+        <p style="margin-bottom: 5px; font-size: 11px;">Total Downloads:</p>
+        <div id="sfcyk4jtz7sjtl61dzdyc4utwqlamrpjp73"></div>
+        <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=yk4jtz7sjtl61dzdyc4utwqlamrpjp73&down=async" async></script>
+        <br>
+        <a href="https://www.freecounterstat.com" style="font-size: 10px; color: #ccc; text-decoration: none;">free counter</a>
+        <noscript>
+            <a href="https://www.freecounterstat.com" title="free counter">
+                <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=yk4jtz7sjtl61dzdyc4utwqlamrpjp73" border="0" title="free counter" alt="free counter">
+            </a>
+        </noscript>
+    </div>
+</div>
+
+<script>
+    // Automatically trigger the file download after 1 second
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const downloadUrl = "/downloads/mini_fms.exe";
+            
+            // Create an invisible anchor tag to trigger the download smoothly
+            const tempLink = document.createElement('a');
+            tempLink.href = downloadUrl;
+            tempLink.setAttribute('download', 'mini_fms.exe');
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+        }, 1000); // 1-second delay gives the tracker a moment to load safely
+    });
+</script>
+
+</body>
+</html>
