@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORX - Headquarters Enlistment</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --text-bright: #f0f6fc;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--text-bright);
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .mission-statement {
+            font-size: 1.1rem;
+            color: var(--text-bright);
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: var(--text-bright);
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .sector-list {
+            margin-bottom: 40px;
+        }
+
+        .sector-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .sector-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-bright);
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #8b949e;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #238636;
+            color: #ffffff;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #2ea44f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>ORX Headquarters Portal</h1>
+        <p>Precision. Brevity. Transparency.</p>
+    </header>
+
+    <section class="mission-statement">
+        Welcome to ORX, a community dedicated to a single mission: proving that elite-level engineering does not require an elite-level budget. The rising costs of traditional robotics competitions are becoming unbearable for teams. We decided to build something different—a league where creativity and strategic logic matter more than a team’s bank account.
+    </section>
+
+    <p>As a member of the HQ team, you will be the one that teams rely on. You will have access to our shared repositories and design folders to iterate rapidly, keeping Engineering Vitality as our core focus.</p>
+
+    <h2>Active Sectors of Operation</h2>
+    <div class="sector-list">
+        <div class="sector-item">
+            <div class="sector-title">CAD Modelling & Mechanical Design</div>
+            Develop 3D models for field elements and official kit parts. Prioritize durability, low-cost manufacturing, and assembly with minimal tools.
+        </div>
+        <div class="sector-item">
+            <div class="sector-title">Software Development</div>
+            Write and optimize libraries for our ESP-32 based control system. Includes firmware, API documentation, Field Management System (FMS), and driver-stations.
+        </div>
+        <div class="sector-item">
+            <div class="sector-title">Electrical Engineering</div>
+            Design and test power distribution and sensor integration for core kits and main boards.
+        </div>
+        <div class="sector-item">
+            <div class="sector-title">Technical Documentation</div>
+            Author manuals and assembly guides. Requires a clear, instructional, no-fluff tone that gets straight to the point.
+        </div>
+        <div class="sector-item">
+            <div class="sector-title">Communications & Advertising</div>
+            Execute brand guidelines across digital and print media to recruit teams and sponsors.
+        </div>
+    </div>
+
+    <h2>Submit Credentials</h2>
+    <!-- WEB3FORMS ENDPOINT -->
+    <form action="https://api.web3forms.com/submit" method="POST">
+        
+        <!-- REPLACE THIS VALUE WITH YOUR ACTUAL ACCESS KEY -->
+        <input type="hidden" name="access_key" value="efd25ce7-2310-4f43-86da-228c8fe00d11">
+        
+        <!-- Anti-spam Honeypot (Invisible to users) -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="e.g., Alex Chen">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Contact Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="name@domain.com">
+        </div>
+
+        <div class="form-group">
+            <label for="sector">Primary Area of Expertise</label>
+            <select id="sector" name="targeted_sector" required>
+                <option value="" disabled selected>Select a sector...</option>
+                <option value="CAD & Mechanical">CAD Modelling & Mechanical Design</option>
+                <option value="Software Development">Software Development</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Technical Documentation">Technical Documentation</option>
+                <option value="Communications & Advertising">Communications & Advertising</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Relevant Background & Intent</label>
+            <textarea id="experience" name="background_brief" required placeholder="Briefly outline your technical background or links to previous work. Brevity is valued."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="portfolio">Portfolio / Repository Link (Optional)</label>
+            <input type="text" id="portfolio" name="portfolio_url" placeholder="https://github.com/username or equivalent">
+            <div class="note">If applicable, provide a direct path to evaluate your engineering or creative style.</div>
+        </div>
+
+        <button type="submit">Submit Enlistment Details</button>
+    </form>
+</div>
+
+</body>
+</html>
