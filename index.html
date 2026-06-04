@@ -7,7 +7,7 @@
     <!-- Google Fonts for Proxima Nova alternative (Montserrat maps perfectly to its weights/all-caps look) and Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -16,6 +16,7 @@
             --robotic-red: #CC312D;
             --stark-white: #F8FAFC;
             --steel-gray: #94A3B8;
+            --grid-line: rgba(148, 163, 184, 0.15);
         }
 
         body {
@@ -31,7 +32,7 @@
         }
 
         .container {
-            max-width: 620px;
+            max-width: 680px; /* Slightly wider to support richer multi-column layout pieces */
             width: 100%;
         }
 
@@ -68,13 +69,31 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--deep-teal);
-            margin-top: 40px;
-            margin-bottom: 20px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--grid-line);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--stark-white);
+            margin: 0 0 10px 0;
         }
 
         p {
             font-size: 1rem;
             margin: 0 0 20px 0;
+            color: rgba(248, 250, 252, 0.9);
+        }
+
+        .text-muted {
+            color: var(--steel-gray);
+            font-size: 0.95rem;
         }
 
         /* Technical Sidebar for Critical Intro */
@@ -82,6 +101,26 @@
             border-left: 4px solid var(--robotic-red);
             padding-left: 20px;
             margin-bottom: 35px;
+        }
+
+        /* Context Split Section */
+        .context-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 600px) {
+            .context-block {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .context-card {
+            background-color: rgba(2, 12, 18, 0.5);
+            border: 1px solid var(--grid-line);
+            padding: 20px;
         }
 
         /* Blueprint Container System */
@@ -95,6 +134,7 @@
             border: 1px solid var(--steel-gray);
             border-radius: 0px; /* Strict 0px branding */
             padding: 20px;
+            background-color: rgba(258, 258, 258, 0.01);
         }
 
         .sector-name {
@@ -104,13 +144,56 @@
             letter-spacing: 0.05em;
             color: var(--stark-white);
             font-size: 0.95rem;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .sector-desc {
             color: var(--steel-gray);
             font-size: 0.9rem;
             margin: 0;
+        }
+
+        .email-notice {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--stark-white);
+            border-top: 1px dashed var(--grid-line);
+            padding-top: 12px;
+        }
+
+        /* Pipeline List Layout */
+        .pipeline-list {
+            margin-bottom: 40px;
+        }
+        
+        .pipeline-step {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .step-num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--robotic-red);
+            min-width: 45px;
+        }
+
+        /* FAQ Framework Blocks */
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--grid-line);
+        }
+        .faq-q {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--stark-white);
+            margin-bottom: 5px;
+        }
+        .faq-a {
+            font-size: 0.9rem;
+            color: var(--steel-gray);
         }
 
         form {
@@ -159,12 +242,12 @@
             height: 100px;
         }
 
-        /* 10% Highlight Action Button */
+        /* Highlight Action Button */
         button {
             background-color: var(--robotic-red);
             color: var(--stark-white);
             border: none;
-            border-radius: 2px; /* Max 2px layout allowance */
+            border-radius: 2px;
             padding: 14px 20px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
@@ -181,7 +264,7 @@
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 60px;
             text-align: center;
             font-size: 0.9rem;
         }
@@ -203,36 +286,75 @@
     </header>
 
     <div class="intro-box">
-        <p>We are proving that elite-level engineering does not require an elite-level budget. Traditional robotics costs are becoming unbearable for teams. We built a league where creativity and strategic logic matter more than a bank account.</p>
+        <p>We are proving that elite-level engineering does not require an elite-level budget. Traditional robotics competition costs are becoming unbearable for schools and independent teams alike. We are engineering a new architectural standard to run competitive tournaments that are structurally more affordable than anything else currently operating.</p>
     </div>
 
-    <p>To support teams for our first season, our core team needs expertise across five areas. You'll get access to our repositories and design folders to iterate rapidly.</p>
+    <h2>The Paradigm Shift</h2>
+    <div class="context-block">
+        <div class="context-card">
+            <h3>The Current Burden</h3>
+            <p class="text-muted">Proprietary control ecosystems, vendor lock-in, and ballooning metal kit prices restrict high-tier technical exposure to well-funded environments.</p>
+        </div>
+        <div class="context-card">
+            <h3>The Open Solution</h3>
+            <p class="text-muted">An open-source standard built around baseline manufacturing: standard stock components, distributed standard electronics, and crowdsourced CAD hardware files.</p>
+        </div>
+    </div>
 
-    <h2>Areas of Focus</h2>
+    <p>To scale this framework into reality for the upcoming season, ORX HQ functions as an open assembly line. We require developers, operators, and mechanics to finalize the core ecosystem layout. Accepted volunteers will be granted entry to core workspaces to execute rapid deployment.</p>
+
+    <h2>Active Development Sectors</h2>
     <div class="sectors-grid">
         <div class="sector-card">
-            <div class="sector-name">CAD & Mechanical Design</div>
-            <p class="sector-desc">Develop 3D models for field elements and official kit parts. Focus on durability and low-cost manufacturing with minimal tools.</p>
+            <div class="sector-name">CAD & Open-Source Part Libraries</div>
+            <p class="sector-desc">Modeling reliable, accessible structural parts for game fields and primary kits. Focus areas: extreme durability profiles, standard raw stock alignment, and rapid low-tool manufacturing. Accepted builders receive repository read/write clearance for direct commits and pull request iterations.</p>
+            <p class="email-notice">💡 <em>Prefer standard file sharing? Skip git overhead and email your `.STEP` or project folders straight to our engineering deck.</em></p>
         </div>
         <div class="sector-card">
-            <div class="sector-name">Software Development</div>
-            <p class="sector-desc">Optimize libraries for our ESP-32 based control system (firmware, API documentation, FMS, and driver-stations).</p>
+            <div class="sector-name">Software Infrastructure</div>
+            <p class="sector-desc">Writing custom, low-overhead firmware and libraries for our ESP-32 based hardware stack. Includes development on localized field management software (FMS) and driver-station communication layers.</p>
         </div>
         <div class="sector-card">
             <div class="sector-name">Electrical Engineering</div>
-            <p class="sector-desc">Design and test power distribution and sensor integration for core kits and main boards.</p>
+            <p class="sector-desc">Validating schematic routing, stress-testing power distribution architectures, and standardizing sensor integration brackets across entry-level modular electronics boards.</p>
         </div>
         <div class="sector-card">
             <div class="sector-name">Technical Documentation</div>
-            <p class="sector-desc">Author clear, instructional assembly guides and manuals. Direct and straight to the point.</p>
+            <p class="sector-desc">Drafting assembly specifications, system wiring charts, and layout regulations. Objective clarity over stylistic filler.</p>
         </div>
         <div class="sector-card">
-            <div class="sector-name">Communications & Advertising</div>
-            <p class="sector-desc">Execute brand guidelines across digital and print media to connect with teams and sponsors.</p>
+            <div class="sector-name">Ecosystem Communications</div>
+            <p class="sector-desc">Managing brand assets, open asset delivery frameworks, and community outreach channels to cleanly onboard structural groups and team leagues.</p>
         </div>
     </div>
 
-    <h2>Get in Touch</h2>
+    <h2>Contribution Pathway</h2>
+    <div class="pipeline-list">
+        <div class="pipeline-step">
+            <span class="step-num">01 //</span>
+            <div><strong>Application Processing:</strong> Submit your functional focus area via the portal dashboard below.</div>
+        </div>
+        <div class="pipeline-step">
+            <span class="step-num">02 //</span>
+            <div><strong>Ecosystem Access:</strong> Onboarding to designated GitHub nodes, shared CAD directories, or direct email drop links depending on contribution style preference.</div>
+        </div>
+        <div class="pipeline-step">
+            <span class="step-num">03 //</span>
+            <div><strong>Deployment:</strong> Code updates, part validation commits, or documentation edits are peer-reviewed and locked into the primary competition blueprint standard.</div>
+        </div>
+    </div>
+
+    <h2>Ecosystem Logistics (FAQ)</h2>
+    <div class="faq-item">
+        <div class="faq-q">Who owns the design data submitted?</div>
+        <div class="faq-a">Everything committed to the ORX standard operates under open-source protocols. Your designs directly keep robotics affordable and accessible for global teams.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q">Do I need extensive robotics background to join?</div>
+        <div class="faq-a">No. If you can cleanly structure software APIs, render precise mechanical mates, compile readable documentation, or style structural layouts, you are qualified.</div>
+    </div>
+
+    <h2>Initialize Application</h2>
     
     <form action="https://api.web3forms.com/submit" method="POST">
         <!-- Add your Web3Forms Access Key here -->
@@ -240,33 +362,33 @@
         <input type="checkbox" name="botcheck" style="display: none;">
 
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Full Identity / Name</label>
             <input type="text" id="name" name="name" required>
         </div>
 
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Secure Email Interface</label>
             <input type="email" id="email" name="email" required>
         </div>
 
         <div class="form-group">
-            <label for="focus">Area of Interest</label>
+            <label for="focus">Primary Operational Sector</label>
             <select id="focus" name="area_of_interest" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="CAD & Mechanical">CAD & Mechanical Design</option>
-                <option value="Software">Software Development</option>
+                <option value="" disabled selected>Select deployment sector...</option>
+                <option value="CAD & Mechanical">CAD & Open-Source Part Libraries</option>
+                <option value="Software">Software Infrastructure</option>
                 <option value="Electrical">Electrical Engineering</option>
                 <option value="Documentation">Technical Documentation</option>
-                <option value="Communications">Communications & Advertising</option>
+                <option value="Communications">Ecosystem Communications</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="notes">Background & Links</label>
-            <textarea id="notes" name="background_brief" required placeholder="A brief overview of your background or links to your work."></textarea>
+            <label for="notes">Technical Summary & References (GitHub, Portfolio, or Notes)</label>
+            <textarea id="notes" name="background_brief" required placeholder="Provide a summary of your tooling, past assets, or mention if you plan to submit designs directly via email communication..."></textarea>
         </div>
 
-        <button type="submit">Submit Info</button>
+        <button type="submit">Submit Parameters</button>
     </form>
 
     <footer>
