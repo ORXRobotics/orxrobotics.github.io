@@ -1,1 +1,5 @@
 Here is a list of the downloads!
+
+
+Icon credit of: 
+ícone de Drone by Rudez Studio on <a href="https://icon-icons.com/pt/authors/674-rudez-studio">Icon-Icons.com</a>
