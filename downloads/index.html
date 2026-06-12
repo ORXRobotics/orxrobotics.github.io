@@ -1,7 +1,116 @@
-Here is a list of the downloads!
 
 
-Icon credit of: 
-ícone de Drone by Rudez Studio on <a href="https://icon-icons.com/pt/authors/674-rudez-studio">Icon-Icons.com</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>my apps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      color: #111;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
 
-<a href="downloads/ORX_FMS_V1.exe">Download the FMS!</a>
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p.sub {
+      color: #666;
+      margin-bottom: 48px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .card-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .card a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #111;
+    }
+
+    .card a:hover {
+      color: #555;
+      border-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Applications</h1>
+  <p class="sub">Projects in progress</p>
+  <p class="sub">If the license key runs out, you can get a new one just by filling out the form here: <a href="https://forms.gle/RVCh8QtzrbUsQLyt5">Get a new key!</a></p>
+
+  <div class="grid" id="grid"></div>
+
+  <script>
+    // add your apps here
+    const apps = [
+      {
+        icon: "🤖",
+        name: "FTC - Field Control",
+        description: "A super basic field control app for FTC. Using ADB as the main source of communication.",
+        downloadUrl: "https://hungrygiraffe.itch.io/ftc-fms",
+      },
+      {
+        icon: "🤖",
+        name: "FRC - Field Control",
+        description: "A super basic field control app for FRC. Using the actual FRC protocol to communicate with the driver station. Just a lot stripped down on the frontend, to make it as easy to use as possible.",
+        downloadUrl: "https://hungrygiraffe.itch.io/frc-fms",
+      },
+      // paste more of these to add apps
+    ];
+
+    const grid = document.getElementById("grid");
+    apps.forEach(app => {
+      grid.innerHTML += `
+        <div class="card">
+          <div class="card-icon">${app.icon ?? "📦"}</div>
+          <div class="card-name">${app.name}</div>
+          <p class="card-desc">${app.description}</p>
+          <a href="${app.downloadUrl}">download</a>
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
