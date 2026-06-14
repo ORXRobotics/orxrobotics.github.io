@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Share Your Screen</title>
+<style>
+  :root{
+    --bg: #0E1116;
+    --panel: #1A1F26;
+    --panel-edge: #262C36;
+    --signal: #4DE8D4;
+    --signal-dim: #2A6E66;
+    --amber: #FFB74D;
+    --text: #E8EAED;
+    --text-dim: #8B95A1;
+    --danger: #FF6B6B;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html, body{
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+  }
+
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 24px;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(77,232,212,0.06), transparent 70%),
+      var(--bg);
+  }
+
+  .card{
+    width: 100%;
+    max-width: 420px;
+    background: var(--panel);
+    border: 1px solid var(--panel-edge);
+    border-radius: 18px;
+    padding: clamp(24px, 5vw, 40px);
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .eyebrow .dot{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--signal-dim);
+    flex-shrink:0;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .eyebrow .dot.live{
+    background: var(--signal);
+    box-shadow: 0 0 0 4px rgba(77,232,212,0.15);
+  }
+  .eyebrow .dot.error{
+    background: var(--danger);
+    box-shadow: 0 0 0 4px rgba(255,107,107,0.15);
+  }
+
+  h1{
+    font-size: clamp(24px, 5vw, 30px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .subtitle{
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* ===== CODE INPUT ===== */
+  label{
+    display:block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .code-input-row{
+    display:flex;
+    align-items:center;
+    gap: 0;
+    background: var(--bg);
+    border: 1px solid var(--panel-edge);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .code-input-row:focus-within{
+    border-color: var(--signal-dim);
+    box-shadow: 0 0 0 3px rgba(77,232,212,0.08);
+  }
+  .code-input-row.error{
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(255,107,107,0.08);
+  }
+
+  .prefix-tag{
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: clamp(20px, 6vw, 26px);
+    color: var(--text-dim);
+    padding: 12px 4px 12px 14px;
+    letter-spacing: 0.05em;
+    user-select: none;
+  }
+
+  #digit-input{
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: clamp(20px, 6vw, 26px);
+    color: var(--amber);
+    letter-spacing: 0.35em;
+    padding: 12px 14px 12px 6px;
+    width: 100%;
+    min-width: 0;
+  }
+  #digit-input::placeholder{
+    color: var(--panel-edge);
+    letter-spacing: 0.35em;
+  }
+
+  .hint{
+    font-size: 12px;
+    color: var(--text-dim);
+    min-height: 18px;
+    margin-bottom: 22px;
+  }
+  .hint.error{
+    color: var(--danger);
+  }
+
+  /* ===== BUTTON ===== */
+  button#connect-btn{
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    background: var(--signal);
+    color: #06201D;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    box-shadow: 0 8px 24px -8px rgba(77,232,212,0.4);
+  }
+  button#connect-btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -8px rgba(77,232,212,0.5);
+  }
+  button#connect-btn:active{
+    transform: translateY(0);
+  }
+  button#connect-btn:disabled{
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform:none;
+    box-shadow:none;
+  }
+
+  /* ===== SHARING VIEW ===== */
+  #share-view{
+    display:none;
+  }
+  #share-view.active{
+    display:block;
+  }
+  #form-view.hidden{
+    display:none;
+  }
+
+  .preview-frame-wrap{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 12px;
+    overflow:hidden;
+    margin-bottom: 18px;
+    border: 1px solid var(--panel-edge);
+  }
+  .preview-frame-wrap iframe{
+    width:100%; height:100%;
+    border:none;
+  }
+
+  .status-line{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 18px;
+  }
+  .live-dot{
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 0 0 rgba(77,232,212,0.6);
+    animation: ring 1.5s ease-out infinite;
+    flex-shrink:0;
+  }
+  @keyframes ring{
+    0% { box-shadow: 0 0 0 0 rgba(77,232,212,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(77,232,212,0); }
+    100% { box-shadow: 0 0 0 0 rgba(77,232,212,0); }
+  }
+
+  .room-tag{
+    font-family: var(--mono);
+    color: var(--amber);
+    letter-spacing: 0.08em;
+  }
+
+  button#stop-btn{
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--panel-edge);
+    background: transparent;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  button#stop-btn:hover{
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+
+  .footnote{
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- ============ ENTRY FORM ============ -->
+  <div id="form-view">
+    <div class="eyebrow">
+      <span class="dot" id="status-dot"></span>
+      <span id="status-text">Not connected</span>
+    </div>
+
+    <h1>Share your screen</h1>
+    <p class="subtitle">Enter the room code shown on the display you want to send your screen to.</p>
+
+    <label for="digit-input">Room code</label>
+    <div class="code-input-row" id="code-row">
+      <span class="prefix-tag">YJ</span>
+      <input
+        id="digit-input"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="000000"
+        maxlength="6"
+      />
+    </div>
+    <div class="hint" id="hint">Enter the 6-digit code, e.g. YJ482915</div>
+
+    <button id="connect-btn" disabled>Connect &amp; share screen</button>
+
+    <p class="footnote">You'll be asked to choose which screen, window, or tab to share, and to allow audio if you'd like sound included.</p>
+  </div>
+
+  <!-- ============ SHARING VIEW ============ -->
+  <div id="share-view">
+    <div class="eyebrow">
+      <span class="dot live"></span>
+      <span>Broadcasting</span>
+    </div>
+    <h1>Sharing your screen</h1>
+    <p class="subtitle">Connected to room <span class="room-tag" id="room-tag-1"></span>. Your screen is being sent to the display.</p>
+
+    <div class="preview-frame-wrap">
+      <iframe id="vdo-frame" allow="camera; microphone; display-capture; autoplay" allowfullscreen></iframe>
+    </div>
+
+    <div class="status-line">
+      <span class="live-dot"></span>
+      <span>Live — room <span class="room-tag" id="room-tag-2"></span></span>
+    </div>
+
+    <button id="stop-btn">Stop sharing</button>
+
+    <p class="footnote">Closing this tab or clicking "Stop sharing" will end the connection.</p>
+  </div>
+
+</div>
+
+<script>
+  /* =========================================================
+     CONFIGURATION — must match screen.html
+     ========================================================= */
+  const ROOM_PREFIX = "yj";
+  const DIGIT_COUNT = 6;
+  const VDO_BASE = "https://vdo.ninja";
+
+  /* =========================================================
+     ELEMENTS
+     ========================================================= */
+  const digitInput   = document.getElementById("digit-input");
+  const codeRow      = document.getElementById("code-row");
+  const hint         = document.getElementById("hint");
+  const connectBtn   = document.getElementById("connect-btn");
+  const statusDot    = document.getElementById("status-dot");
+  const statusText   = document.getElementById("status-text");
+
+  const formView   = document.getElementById("form-view");
+  const shareView  = document.getElementById("share-view");
+  const vdoFrame   = document.getElementById("vdo-frame");
+  const stopBtn    = document.getElementById("stop-btn");
+  const roomTag1   = document.getElementById("room-tag-1");
+  const roomTag2   = document.getElementById("room-tag-2");
+
+  /* =========================================================
+     INPUT HANDLING — digits only, max length
+     ========================================================= */
+  digitInput.addEventListener("input", () => {
+    const cleaned = digitInput.value.replace(/\D/g, "").slice(0, DIGIT_COUNT);
+    digitInput.value = cleaned;
+
+    const valid = cleaned.length === DIGIT_COUNT;
+    connectBtn.disabled = !valid;
+
+    codeRow.classList.remove("error");
+    hint.classList.remove("error");
+
+    if (cleaned.length === 0) {
+      hint.textContent = `Enter the ${DIGIT_COUNT}-digit code, e.g. YJ482915`;
+    } else if (!valid) {
+      hint.textContent = `${cleaned.length} of ${DIGIT_COUNT} digits entered`;
+    } else {
+      hint.textContent = "Looks good — ready to connect";
+    }
+  });
+
+  // Allow pressing Enter to connect
+  digitInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !connectBtn.disabled) {
+      connectBtn.click();
+    }
+  });
+
+  // Auto-focus on load
+  window.addEventListener("DOMContentLoaded", () => digitInput.focus());
+
+  /* =========================================================
+     CONNECT
+     Builds the room code, opens vdo.ninja in "push" mode with
+     screen-share auto-prompted, and swaps to the sharing view.
+     ========================================================= */
+  connectBtn.addEventListener("click", () => {
+    const digits = digitInput.value.replace(/\D/g, "");
+
+    if (digits.length !== DIGIT_COUNT) {
+      showError(`Please enter all ${DIGIT_COUNT} digits.`);
+      return;
+    }
+
+    const roomCode = ROOM_PREFIX + digits;
+    startSharing(roomCode);
+  });
+
+  function showError(message) {
+    codeRow.classList.add("error");
+    hint.classList.add("error");
+    hint.textContent = message;
+    statusDot.classList.add("error");
+    statusText.textContent = "Connection error";
+  }
+
+  function startSharing(roomCode) {
+    statusDot.classList.remove("error");
+    statusDot.classList.add("live");
+    statusText.textContent = "Connecting…";
+
+    // vdo.ninja push mode: prompts the user for screen share and
+    // streams it into the given room for the display to pick up.
+    const pushParams = new URLSearchParams({
+      room: roomCode,
+      screenshare: "1",  // prompt for screen/tab/window capture
+      autostart: "1",
+      cleanoutput: "1",
+      transparent: "0",
+      bitrate: "6000",   // higher bitrate suited to screen content
+      videoquality: "1"
+    });
+
+    vdoFrame.src = `${VDO_BASE}/?${pushParams.toString()}`;
+
+    roomTag1.textContent = "YJ-" + roomCode.slice(ROOM_PREFIX.length);
+    roomTag2.textContent = "YJ-" + roomCode.slice(ROOM_PREFIX.length);
+
+    formView.classList.add("hidden");
+    shareView.classList.add("active");
+
+    statusText.textContent = "Connected";
+  }
+
+  /* =========================================================
+     STOP SHARING
+     ========================================================= */
+  stopBtn.addEventListener("click", () => {
+    vdoFrame.src = "about:blank";
+    shareView.classList.remove("active");
+    formView.classList.remove("hidden");
+
+    statusDot.classList.remove("live", "error");
+    statusText.textContent = "Not connected";
+
+    digitInput.value = "";
+    connectBtn.disabled = true;
+    hint.classList.remove("error");
+    hint.textContent = `Enter the ${DIGIT_COUNT}-digit code, e.g. YJ482915`;
+    codeRow.classList.remove("error");
+    digitInput.focus();
+  });
+</script>
+
+</body>
+</html>
